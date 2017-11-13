@@ -27,7 +27,7 @@ public class PhoneNumberGeneratorTest {
     public void testPhoneNumberGeneratorDoesNotGenerateTheSameNumbersConsecutively() {
         RTPhoneNumber phoneNumber1 = phoneNumberGenerator.generate();
         RTPhoneNumber phoneNumber2 = phoneNumberGenerator.generate();
-        assertFalse(phoneNumber1.getNumber().equals(phoneNumber2.getNumber()));
+        assertFalse(phoneNumber1.getTelephoneNumber().equals(phoneNumber2.getTelephoneNumber()));
     }
 
 }

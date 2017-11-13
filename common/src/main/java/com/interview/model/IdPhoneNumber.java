@@ -1,5 +1,6 @@
 package com.interview.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -11,14 +12,14 @@ import com.interview.util.PhoneNumberException;
 public class IdPhoneNumber implements RTPhoneNumber {
     private static PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 
-    private final String phoneNumber;
+    private final String telephoneNumber;
 
     private final Phonenumber.PhoneNumber parsedPhoneNumber;
     private final String id;
 
-    public IdPhoneNumber(String id, String phoneNumber) {
-        this.parsedPhoneNumber = parsePhoneNumber(phoneNumber);
-        this.phoneNumber = phoneNumber;
+    public IdPhoneNumber(String id, String telephoneNumber) {
+        this.parsedPhoneNumber = parsePhoneNumber(telephoneNumber);
+        this.telephoneNumber = telephoneNumber;
         this.id = id;
     }
 
@@ -35,10 +36,11 @@ public class IdPhoneNumber implements RTPhoneNumber {
     }
 
     @Override
-    public String getNumber() {
-        return phoneNumber;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
+    @JsonIgnore
     @Override
     public int getCountryCode() {
         return parsedPhoneNumber.getCountryCode();
@@ -46,7 +48,7 @@ public class IdPhoneNumber implements RTPhoneNumber {
 
     @Override
     public String toString() {
-        return phoneNumber;
+        return telephoneNumber;
     }
 
     @Override

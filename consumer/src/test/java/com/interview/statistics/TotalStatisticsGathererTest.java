@@ -1,13 +1,14 @@
 package com.interview.statistics;
 
+import com.interview.model.IdPhoneNumber;
 import com.interview.model.RTPhoneNumber;
-import com.interview.model.UKPhoneNumber;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 /**
@@ -25,12 +26,12 @@ public class TotalStatisticsGathererTest {
     public void testSubmitUpdatesTotalAndGrouping() {
         //Submit should increment a total of the messages received
         //should add the number to the list of country codes.
-        RTPhoneNumber phoneNumber = new UKPhoneNumber("+447506907666");
-        RTPhoneNumber bulgarianNumber = new UKPhoneNumber("+35949234567");
-        RTPhoneNumber ukPhoneNumber2 = new UKPhoneNumber("+447446668989");
-        RTPhoneNumber bulgarianNumber2 = new UKPhoneNumber("+35949234467");
-        RTPhoneNumber usNumber1  = new UKPhoneNumber("+14085551212");
-        RTPhoneNumber usNumber2 = new UKPhoneNumber("+14085551212");
+        RTPhoneNumber phoneNumber = new IdPhoneNumber(UUID.randomUUID().toString(),"+447506907666");
+        RTPhoneNumber bulgarianNumber = new IdPhoneNumber(UUID.randomUUID().toString(),"+35949234567");
+        RTPhoneNumber ukPhoneNumber2 = new IdPhoneNumber(UUID.randomUUID().toString(),"+447446668989");
+        RTPhoneNumber bulgarianNumber2 = new IdPhoneNumber(UUID.randomUUID().toString(),"+35949234467");
+        RTPhoneNumber usNumber1  = new IdPhoneNumber(UUID.randomUUID().toString(),"+14085551212");
+        RTPhoneNumber usNumber2 = new IdPhoneNumber(UUID.randomUUID().toString(),"+14085551212");
 
         statisticsGatherer.submit(phoneNumber);
         statisticsGatherer.submit(bulgarianNumber);
@@ -60,12 +61,12 @@ public class TotalStatisticsGathererTest {
 
     @Test
     public void testModificationOfListDoesNotModifyInternalView() {
-        RTPhoneNumber phoneNumber = new UKPhoneNumber("+447506907666");
+        RTPhoneNumber phoneNumber = new IdPhoneNumber(UUID.randomUUID().toString(),"+447506907666");
         statisticsGatherer.submit(phoneNumber);
         Map<Integer, List<RTPhoneNumber>> phoneNumbers = statisticsGatherer.getPhoneNumbersGroupedByCountryCode();
         List<RTPhoneNumber> ukNumbers = phoneNumbers.get(44);
         assertTrue(ukNumbers.size() == 1);
-        ukNumbers.add(new UKPhoneNumber("+441615089999"));
+        ukNumbers.add(new IdPhoneNumber(UUID.randomUUID().toString(),"+441615089999"));
         assertTrue(ukNumbers.size() == 2);
         phoneNumbers.put(22, new LinkedList<>());
         phoneNumbers = statisticsGatherer.getPhoneNumbersGroupedByCountryCode();

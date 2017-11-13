@@ -3,7 +3,6 @@ package com.interview.writer;
 import com.interview.model.PhoneNumberMessage;
 import com.interview.model.PhoneNumberMessageImpl;
 import com.interview.model.RTPhoneNumber;
-import com.interview.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -31,7 +30,7 @@ public class RabbitMQPhoneNumberWriter implements PhoneNumberWriter {
 
     @Override
     public void write(RTPhoneNumber phoneNumber) {
-        PhoneNumberMessage message = new PhoneNumberMessageImpl(phoneNumber.getNumber());
+        PhoneNumberMessage message = new PhoneNumberMessageImpl(phoneNumber.getTelephoneNumber());
         LOGGER.info("Sending phoneNumber={}", message);
         rabbitTemplate.convertAndSend(queueName,  message);
     }

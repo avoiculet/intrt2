@@ -2,7 +2,6 @@ package com.interview.reader;
 
 import com.interview.model.IdPhoneNumber;
 import com.interview.model.PhoneNumberMessageImpl;
-import com.interview.model.UKPhoneNumber;
 import com.interview.statistics.StatisticsGatherer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +25,6 @@ public class RabbitMQPhoneNumberReceiver implements PhoneNumberReceiver {
     @Override
     public void receiveMessage(PhoneNumberMessageImpl message) {
        LOGGER.info("Received: " + message.toString());
-       statisticsGatherer.submit(new IdPhoneNumber(message.getId(), message.getPhoneNumber()));
+       statisticsGatherer.submit(new IdPhoneNumber(message.getId(), message.getTelephoneNumber()));
     }
 }

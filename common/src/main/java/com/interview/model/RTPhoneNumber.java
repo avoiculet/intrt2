@@ -5,7 +5,7 @@ package com.interview.model;
  */
 public interface RTPhoneNumber {
 
-    String getNumber();
+    String getTelephoneNumber();
     int getCountryCode();
     String getId();
 }

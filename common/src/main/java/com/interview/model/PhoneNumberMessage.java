@@ -6,6 +6,6 @@ package com.interview.model;
 public interface PhoneNumberMessage {
 
     public String getId();
-    public String getPhoneNumber();
+    public String getTelephoneNumber();
 
 }
