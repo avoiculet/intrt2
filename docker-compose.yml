@@ -1,0 +1,22 @@
+version: '3'
+services:
+  producer:
+    build: ./Producer
+    ports: 
+    - 4000:8080
+    links:
+    - rabbitmq
+  consumer:
+    build: ./consumer
+    ports: 
+    - 4001:8080
+    links: 
+    - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3.6.14-management
+    ports:
+    - 15672:15672
+    - 5672:5672
+    hostname: "rabbitmq"
+
+
