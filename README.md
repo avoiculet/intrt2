@@ -1,5 +1,5 @@
-# Solution
-To run the solution first run mvn install in the "common" folder. Then run docker-compose up in the root of the project.
+# Solutionfirst
+To run the solution please use the script: runDockerCompose located in the root of the project, on a Unix OS.
 
 The producer on startup, starts sending 1 message every 5 seconds to a RabbitMQ queue (using Spring AMQP).
 
